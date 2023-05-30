@@ -1,0 +1,30 @@
+body, html { 
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  transition: background-color 1s ease; 
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.panel {
+  min-height: 100vh;
+  width: 100%;
+  /* outline: 10px solid hotpink; */
+}
+
+.color-blue {
+  background-color: hsl(240, 100%, 50%)
+}
+
+.color-violet {
+  background-color: hsl(273, 100%, 50%)
+}
