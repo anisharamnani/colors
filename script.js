@@ -1,35 +1,34 @@
-document.addEventListener("scroll", function(event) {
-  changeColor();
-});
-
-const changeColor = () => {
-  const body = document.body;
-  const panels = document.querySelectorAll('.panel');
-
-  const scrollDepth = window.scrollY + (window.innerHeight / 3);
-
-  panels.forEach(panel => {
-    const panelTop = panel.getBoundingClientRect().top;
-    const panelBottom = panel.getBoundingClientRect().bottom
-
-    const isBelowTopOfPanel = panelTop <= scrollDepth
-    const isAboveBottomOfPanel = panelBottom > scrollDepth
-    
-    const shouldUpdate = isBelowTopOfPanel && isAboveBottomOfPanel
-
-    if (shouldUpdate) {
-      body.classList.remove(body.classList[0]);
-      body.classList.add(`color-${panel.dataset.color}`);
-      const fragment = document.createDocumentFragment();
-      const elemDiv = document.createElement('div');
-      elemDiv.classList.add('panel');
-      elemDiv.setAttribute('data-color', 'green');
-      fragment.appendChild(elemDiv);
-      const wrapper = document.querySelector('.wrapper');
-      wrapper.appendChild(fragment);
-    }
-  });
+let options = {
+  root: null,
+  rootMargin: "0px",
+  threshold: 1.0,
 }
 
-// theory: where we put this document div implementation
-// move adding the div outside of shouldupdate but where or how?
+const body = document.body;
+
+let callback = (entries, observer) => {
+  body.classList.remove(body.classList[0]);
+  body.style.backgroundColor = 'purple';
+};
+
+let observer = new IntersectionObserver(callback, options);
+let target = document.querySelector("#scroll");
+observer.observe(target);
+
+// update the target of what we're observing
+// shunt in the next div
+// somehow use the new div to update the color of the body
+
+// old code: 
+// -    if (shouldUpdate) {
+//   -      body.classList.remove(body.classList[0]);
+//   -      body.classList.add(`color-${panel.dataset.color}`);
+//   -      const fragment = document.createDocumentFragment();
+//   -      const elemDiv = document.createElement('div');
+//   -      elemDiv.classList.add('panel');
+//   -      elemDiv.setAttribute('data-color', 'green');
+//   -      fragment.appendChild(elemDiv);
+//   -      const wrapper = document.querySelector('.wrapper');
+//   -      wrapper.appendChild(fragment);
+//   -    }
+//   -  });
