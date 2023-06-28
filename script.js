@@ -1,14 +1,19 @@
 let options = {
   root: null,
   rootMargin: "0px",
-  threshold: 1.0,
+  threshold: 0.5,
 }
 
 const body = document.body;
 
 let callback = (entries, observer) => {
-  body.classList.remove(body.classList[0]);
-  body.style.backgroundColor = 'purple';
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      body.classList.remove(body.classList[0]);
+      body.style.backgroundColor = 'purple';
+      console.log('intersecting!')
+    }
+  });
 };
 
 let observer = new IntersectionObserver(callback, options);

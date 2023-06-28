@@ -11,13 +11,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100%;
 }
 
 .panel {
   height: 900px;
-  width: 100%;
   outline: 10px solid hotpink;
 }
 
