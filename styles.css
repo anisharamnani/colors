@@ -16,7 +16,7 @@ body {
 
 .panel {
   height: 900px;
-  outline: 10px solid hotpink;
+  border: solid 1px pink;
 }
 
 .color-blue {
