@@ -1,10 +1,11 @@
-body, html { 
+body,
+html {
   width: 100vw;
   height: 100vh;
 }
 
 body {
-  transition: background-color 3s ease; 
+  transition: background-color 3s ease;
 }
 
 .wrapper {
@@ -16,17 +17,16 @@ body {
 
 .panel {
   height: 900px;
-  border: solid 1px pink;
 }
 
 .color-blue {
-  background-color: hsl(240, 100%, 50%)
+  background-color: hsl(240, 100%, 50%);
 }
 
 .color-violet {
-  background-color: hsl(273, 100%, 50%)
+  background-color: hsl(273, 100%, 50%);
 }
 
 .color-green {
-  background-color: hsl(180, 100%, 50%)
+  background-color: hsl(180, 100%, 50%);
 }

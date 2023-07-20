@@ -1,0 +1,19 @@
+{
+  "name": "colors",
+  "version": "1.0.0",
+  "description": "An app to scroll through pretty colors &amp; take your mind off your troubles.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anisharamnani/colors.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anisharamnani/colors/issues"
+  },
+  "homepage": "https://github.com/anisharamnani/colors#readme"
+}
