@@ -19,20 +19,37 @@ function addDiv() {
 }
 
 function generateRandomBlue() {
-  return Math.floor(Math.random() * (235 - 188) + 188);
+  const hue = Math.floor(Math.random() * (235 - 188) + 188);
+  return `hsl(${hue}, 100%, 50%)`;
+}
+
+function generateRandomSandColor() {
+  const hue = Math.floor(Math.random() * (37-18) + 18);
+  const saturation = Math.floor(Math.random() * (92-50) + 50);
+  const lightness = Math.floor(Math.random() * (83-73) + 73);
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+function generateRandomPinkColor() {
+  const hue = Math.floor(Math.random() * (346-330) + 330);
+  const saturation = Math.floor(Math.random() * (100-68) + 68);
+  const lightness = Math.floor(Math.random() * (79-65) + 65);
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
 function changeBackgroundColor() {
-  const randomHue = generateRandomBlue();
-  return `hsl(${randomHue}, 100%, 50%)`;
+  const randomColorSelector = Math.random();
+  if(randomColorSelector > 0.7) {
+    return generateRandomBlue();
+  } else if(randomColorSelector > 0.35)
+    return generateRandomSandColor();
+  else {
+    return generateRandomPinkColor();
+  }
 }
 
 function targetDataColor(target) {
   return target.getAttribute('data-color');
-}
-
-function targetHasBeenSeen(target) {
-  return JSON.parse(target.getAttribute('data-has-seen'));
 }
 
 let callback = (entries, observer) => {
