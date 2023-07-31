@@ -1,3 +1,7 @@
+import { themes } from "./modules/themes.js"
+
+console.log({themes});
+
 let options = {
   root: null,
   rootMargin: '0px',
@@ -18,25 +22,6 @@ function addDiv() {
   return elemDiv;
 }
 
-function generateRandomBlue() {
-  const hue = Math.floor(Math.random() * (235 - 188) + 188);
-  return `hsl(${hue}, 100%, 50%)`;
-}
-
-function generateRandomSandColor() {
-  const hue = Math.floor(Math.random() * (37-18) + 18);
-  const saturation = Math.floor(Math.random() * (92-50) + 50);
-  const lightness = Math.floor(Math.random() * (83-73) + 73);
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-}
-
-function generateRandomPinkColor() {
-  const hue = Math.floor(Math.random() * (346-330) + 330);
-  const saturation = Math.floor(Math.random() * (100-68) + 68);
-  const lightness = Math.floor(Math.random() * (79-65) + 65);
-  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-}
-
 function changeBackgroundColor() {
   const randomColorSelector = Math.random();
   if(randomColorSelector > 0.7) {
@@ -45,6 +30,18 @@ function changeBackgroundColor() {
     return generateRandomSandColor();
   else {
     return generateRandomPinkColor();
+  }
+}
+
+
+function changeMidnightBackgroundColor() {
+  const randomColorSelector = Math.random();
+  if(randomColorSelector > 0.6) {
+    return generateMidnightBlue();
+  } else if(randomColorSelector > 0.2)
+    return generateRandomPurple();
+  else {
+    return generateRandomStreetLightColor();
   }
 }
 
