@@ -1,7 +1,5 @@
 import { themes } from "./modules/themes.js"
 
-console.log({themes});
-
 let options = {
   root: null,
   rootMargin: '0px',
@@ -13,7 +11,7 @@ const body = document.body;
 function addDiv() {
   const fragment = document.createDocumentFragment();
   const elemDiv = document.createElement('div');
-  const newColor = changeBackgroundColor();
+  const newColor = generateHSLValue();
   elemDiv.classList.add('panel');
   elemDiv.setAttribute('data-color', newColor);
   fragment.appendChild(elemDiv);
@@ -22,28 +20,47 @@ function addDiv() {
   return elemDiv;
 }
 
-function changeBackgroundColor() {
-  const randomColorSelector = Math.random();
-  if(randomColorSelector > 0.7) {
-    return generateRandomBlue();
-  } else if(randomColorSelector > 0.35)
-    return generateRandomSandColor();
-  else {
-    return generateRandomPinkColor();
+function weightedRandomChoice(theme) {
+  const totalWeight = theme.reduce((acc, color) => acc + color.frequency, 0);
+  let randomNum = Math.random() * totalWeight;
+
+  for (let i = 0; i < theme.length; i++) {
+    if (randomNum < theme[i].frequency) {
+      return theme[i];
+    }
+    randomNum -= theme[i].frequency; // why are we minus? 
+  }
+  // This shouldn't happen, but it's a fallback.
+  return theme[theme.length - 1];
+}
+
+function selectRandomColor(theme = "night") {
+  const themeColors = themes[theme];
+  // this will be replaced 
+  const randomColor = weightedRandomChoice(themeColors);
+  return randomColor;
+};
+
+function generateHSLValue() {
+  const randomColor = selectRandomColor();
+  const hue = generateIndividualValue(randomColor.hue);
+  console.log(randomColor);
+  const saturation = generateIndividualValue(randomColor.saturation);
+  const lightness = generateIndividualValue(randomColor.lightness);
+  return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+function generateIndividualValue(valueArray) {
+  if(valueArray.length === 1) {
+    return valueArray[0]
+  } else {
+    const min = valueArray[0];
+    const max = valueArray[1];
+    return Math.floor(Math.random() * (max - min) + min);
   }
 }
 
 
-function changeMidnightBackgroundColor() {
-  const randomColorSelector = Math.random();
-  if(randomColorSelector > 0.6) {
-    return generateMidnightBlue();
-  } else if(randomColorSelector > 0.2)
-    return generateRandomPurple();
-  else {
-    return generateRandomStreetLightColor();
-  }
-}
 
 function targetDataColor(target) {
   return target.getAttribute('data-color');
@@ -91,3 +108,4 @@ let observer = new IntersectionObserver(callback, options);
 let target = document.querySelector('#scroll');
 observer.observe(target);
 mutationObserver.observe(parentElement, observerConfig);
+
